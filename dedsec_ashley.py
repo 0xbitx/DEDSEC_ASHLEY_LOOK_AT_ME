@@ -5,19 +5,8 @@ import os, time, sys, re
 from pystyle import *
 
 dark = Col.dark_gray
-light = Colors.StaticMIX((Col.cyan, Col.purple, Col.gray))
-acc = Colors.StaticMIX((Col.cyan, Col.purple, Col.blue, Col.gray))
-purple = Colors.StaticMIX((Col.green, Col.blue))
-bpurple = Colors.StaticMIX((Col.purple, Col.cyan))
+GRd = Colors.StaticMIX((Col.green, Col.blue))
 
-def stage(text: str, symbol: str = '...', col1=light, col2=None) -> str:
-    if col2 is None:
-        col2 = light if symbol == '...' else purple
-    if symbol in {'...', '!!!'}:
-        return f"""     {Col.Symbol(symbol, col1, dark)} {col2}{text}{Col.reset}"""
-    else:
-        return f""" {Col.Symbol(symbol, col1, dark)} {col2}{text}{Col.reset}"""
-    
 banner = '''
 ⢠⣶⠋⠉⠉⠉⠉⠉⠉⠉⠀⠐⠒⠒⠒⠀⠒⠒⠒⠂⠠⠤⠤⠤⠤⠤⠤⠤⣀⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⡞⢻⠀⠀⣴⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠲⠤⠤⠤⣄⠈⢷⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
@@ -527,8 +516,8 @@ def validate_webhook(url):
 
 def menu():
     os.system('clear')
-    print(Colorate.Diagonal(Colors.DynamicMIX((purple, dark)), banner))
-    print(((purple)), (banner1))
+    print(Colorate.Diagonal(Colors.DynamicMIX((GRd, dark)), banner))
+    print(((GRd)), (banner1))
     select = input('\n\t[?] DEDSEC: ')
     if select == '1':
         print()
