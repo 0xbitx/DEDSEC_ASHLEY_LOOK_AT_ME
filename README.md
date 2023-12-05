@@ -9,7 +9,7 @@
 * git clone https://github.com/0xbitx/DEDSEC_ASHLEY_LOOK_AT_ME.git
 * cd DEDSEC_ASHLEY_LOOK_AT_ME
 * pip3 install pystyle tabulate pycryptodome
-* python3 dedsec_ashley.py
+* ./dedsec_ashley
 
 ### TESTED ON FOLLOWING
 * Kali Linux 
