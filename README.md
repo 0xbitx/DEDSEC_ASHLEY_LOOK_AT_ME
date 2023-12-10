@@ -8,7 +8,8 @@
 ### INSTALLATION [KALI - PARROT - TERMUX]
 * git clone https://github.com/0xbitx/DEDSEC_ASHLEY_LOOK_AT_ME.git
 * cd DEDSEC_ASHLEY_LOOK_AT_ME
-* pip3 install pystyle tabulate pycryptodome
+* pip3 install pystyle
+* chmod +x dedsec_ashley
 * ./dedsec_ashley
 
 ### TESTED ON FOLLOWING
